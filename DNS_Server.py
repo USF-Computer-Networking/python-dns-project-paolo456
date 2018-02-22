@@ -17,7 +17,7 @@ class DNSQuery:
                 i += l + 1
                 l = ord(data[i])
 
-    def respuesta(self, ip):
+    def request(self, ip):
         pack = ''
         if self.dominio:
             pack += self.data[:2] + "\x81\x80"
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         while 1:
             data, addr = udps.recvfrom(1024)
             p = DNSQuery(data)
-            udps.sendto(p.respuesta(ip), addr)
+            udps.sendto(p.request(ip), addr)
             print ('Hello, your ip address is -> %s' % (p.dominio, ip))
     except KeyboardInterrupt:
         print ('Finalizando')
