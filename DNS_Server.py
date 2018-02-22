@@ -31,7 +31,7 @@ class DNSQuery:
 
 if __name__ == '__main__':
     ip = '192.168.1.1'
-    print 'Hello, your current ip is %s' % ip
+    print ('Hello, your current ip is %s' % ip)
 
     udps = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     udps.bind(('', 53))
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             data, addr = udps.recvfrom(1024)
             p = DNSQuery(data)
             udps.sendto(p.respuesta(ip), addr)
-            print 'Hello, your ip address is -> %s' % (p.dominio, ip)
+            print ('Hello, your ip address is -> %s' % (p.dominio, ip))
     except KeyboardInterrupt:
-        print 'Finalizando'
+        print ('Finalizando')
         udps.close()
